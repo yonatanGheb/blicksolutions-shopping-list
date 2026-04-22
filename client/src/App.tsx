@@ -1,11 +1,21 @@
 import { CheckCircle2, ClipboardList, ListTodo } from "lucide-react";
 import { AddItemForm } from "@/components/add-item-form";
 import { AppHeader } from "@/components/app-header";
+import { ShoppingList } from "@/components/shopping-list";
 import { StatCard } from "@/components/stat-card";
 import { useShoppingList } from "@/hooks/use-shopping-list";
+import { PAGE_SHELL } from "@/lib/page-shell";
+import { cn } from "@/lib/utils";
 
 function App() {
-  const { items, loading, error, addItem } = useShoppingList();
+  const {
+    items,
+    loading,
+    error,
+    addItem,
+    toggleBought,
+    deleteListItem,
+  } = useShoppingList();
 
   const total = items.length;
   const boughtCount = items.filter((i) => i.bought).length;
@@ -15,7 +25,7 @@ function App() {
     <>
       <AppHeader />
 
-      <main className="mx-auto w-full max-w-3xl px-4 py-6 sm:px-6 lg:px-10">
+      <main className={cn(PAGE_SHELL, "py-6")}>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <StatCard
             label="Artikel gesamt"
@@ -48,14 +58,14 @@ function App() {
           ) : null}
           <AddItemForm disabled={loading} onSubmit={addItem} />
 
-          <ul>
-            {items.map((item) => (
-              <li key={item._id}>
-                {item.name}
-                {item.bought ? " ✓" : ""}
-              </li>
-            ))}
-          </ul>
+          <div className="mt-6">
+            <ShoppingList
+              items={items}
+              loading={loading}
+              onToggleBought={toggleBought}
+              onDelete={deleteListItem}
+            />
+          </div>
         </div>
       </main>
     </>
