@@ -5,11 +5,11 @@ import { cn } from "@/lib/utils";
 
 export function AppHeader() {
   return (
-    <header className="w-full border-b-2 border-border bg-background">
+    <header className="w-full bg-transparent">
       <div
         className={cn(
           PAGE_SHELL,
-          "flex items-center justify-between gap-3 py-3 sm:py-4",
+          "flex items-center justify-between gap-3 py-3 sm:py-6",
         )}
         role="navigation"
         aria-label="Main navigation"

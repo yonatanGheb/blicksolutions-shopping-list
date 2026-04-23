@@ -1,53 +1,77 @@
 import { ShoppingListItem } from "@/components/shopping-list-item";
+import { ShoppingListSortSelect } from "@/components/shopping-list-sort-select";
 import { Empty, Loader } from "@/components/retroui";
+import type { ShoppingListSortMode } from "@/lib/sort-shopping-items";
 import type { ShoppingItem } from "@/types/shoppingItem";
 
 export type ShoppingListProps = {
   items: ShoppingItem[];
   loading: boolean;
+  sortMode: ShoppingListSortMode;
+  onSortModeChange: (value: ShoppingListSortMode) => void;
   onToggleBought: (id: string, bought: boolean) => void | Promise<void>;
   onDelete: (id: string) => void | Promise<void>;
 };
 
 export function ShoppingList({
-  items,
   loading,
+  items,
+  sortMode,
+  onSortModeChange,
   onToggleBought,
   onDelete,
 }: ShoppingListProps) {
-  if (loading && items.length === 0) {
-    return (
-      <div className="flex items-center justify-center py-10" aria-busy="true">
-        <Loader size="md" variant="default" />
-      </div>
-    );
-  }
-
-  if (items.length === 0) {
-    return (
-      <Empty className="w-full">
-        <Empty.Content>
-          <Empty.Icon className="size-12 text-muted-foreground" />
-          <Empty.Title>Noch keine Artikel</Empty.Title>
-          <Empty.Description>
-            Kurz eintragen — dann hast du alles auf einen Blick.
-          </Empty.Description>
-        </Empty.Content>
-      </Empty>
-    );
-  }
-
-  return (
-    <ul className="flex flex-col gap-2" aria-label="Einkaufsliste">
-      {items.map((item) => (
-        <ShoppingListItem
-          key={item._id}
-          item={item}
-          onToggleBought={onToggleBought}
-          onDelete={onDelete}
+  return loading ? (
+    <div
+      className="flex flex-col items-center gap-4 py-10"
+      aria-busy="true"
+    >
+      <Loader size="lg" className="justify-center" />
+      <p className="text-sm text-muted-foreground">Liste wird geladen…</p>
+    </div>
+  ) : items.length === 0 ? (
+    <Empty>
+      <Empty.Content>
+        <Empty.Icon className="size-10 md:size-12" />
+        <Empty.Title>Liste ist leer</Empty.Title>
+        <Empty.Separator />
+        <Empty.Description>
+          Noch keine Einträge — tippe oben einen Namen ein und füge dein
+          erstes Produkt hinzu.
+        </Empty.Description>
+      </Empty.Content>
+    </Empty>
+  ) : (
+    <section
+      className="flex w-full flex-col gap-3"
+      aria-labelledby="einkaufsliste-heading"
+    >
+      <div className="flex w-full flex-row items-center justify-between gap-3 sm:gap-4">
+        <h2
+          id="einkaufsliste-heading"
+          className="min-w-0 flex-1 text-xl font-normal leading-tight tracking-tight text-foreground sm:text-2xl"
+        >
+          Einkaufsliste
+        </h2>
+        <ShoppingListSortSelect
+          value={sortMode}
+          onChange={onSortModeChange}
           disabled={loading}
         />
-      ))}
-    </ul>
+      </div>
+
+      <ul className="flex w-full flex-col gap-3">
+        {items.map((item) => (
+          <li key={item._id} className="list-none">
+            <ShoppingListItem
+              item={item}
+              onToggleBought={onToggleBought}
+              onDelete={onDelete}
+              disabled={loading}
+            />
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

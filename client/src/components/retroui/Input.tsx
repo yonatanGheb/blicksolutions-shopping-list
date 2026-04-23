@@ -1,15 +1,15 @@
-import React, { InputHTMLAttributes } from "react";
+import type { InputHTMLAttributes } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-export const Input: React.FC<InputProps> = ({
+export const Input = ({
   type = "text",
   placeholder = "Enter text",
   className = "",
   ...props
-}) => {
+}: InputProps) => {
   return (
     <input
       type={type}

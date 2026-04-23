@@ -12,9 +12,11 @@ function App() {
     items,
     loading,
     error,
+    sortMode,
     addItem,
     toggleBought,
     deleteListItem,
+    changeSortMode,
   } = useShoppingList();
 
   const total = items.length;
@@ -62,6 +64,8 @@ function App() {
             <ShoppingList
               items={items}
               loading={loading}
+              sortMode={sortMode}
+              onSortModeChange={changeSortMode}
               onToggleBought={toggleBought}
               onDelete={deleteListItem}
             />

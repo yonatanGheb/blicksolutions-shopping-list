@@ -25,7 +25,7 @@ export function ShoppingListItem({
   };
 
   return (
-    <li
+    <div
       className={cn(
         "flex items-center gap-3 rounded border-2 border-border bg-card px-3 py-2 shadow-sm",
         item.bought && "opacity-80",
@@ -61,6 +61,6 @@ export function ShoppingListItem({
       >
         <Trash2 className="size-[1.05rem]" aria-hidden />
       </Button>
-    </li>
+    </div>
   );
 }

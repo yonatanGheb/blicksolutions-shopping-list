@@ -5,4 +5,5 @@ export { Empty } from "./Empty";
 export { Input } from "./Input";
 export { Label } from "./Label";
 export { Loader } from "./Loader";
+export { Select } from "./Select";
 export { Text } from "./Text";
