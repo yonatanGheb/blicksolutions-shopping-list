@@ -49,7 +49,7 @@ export function ShoppingList({
       <div className="flex w-full flex-row items-center justify-between gap-3 sm:gap-4">
         <h2
           id="einkaufsliste-heading"
-          className="min-w-0 flex-1 text-xl font-semibold leading-tight tracking-tight text-foreground sm:text-2xl"
+          className="min-w-0 flex-1 text-2xl font-semibold leading-tight tracking-tight text-foreground"
         >
           Deine Einkaufsliste
         </h2>

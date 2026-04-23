@@ -13,7 +13,7 @@ export function ShoppingListSortSelect({
   disabled = false,
 }: ShoppingListSortSelectProps) {
   return (
-    <div className="w-44 max-w-[42%] shrink-0 sm:max-w-none">
+    <div className="w-44 max-w-[32%] shrink-0 sm:max-w-none">
       <Select
         value={value}
         onValueChange={(v) => onChange(v as ShoppingListSortMode)}
@@ -22,12 +22,11 @@ export function ShoppingListSortSelect({
         <Select.Trigger
           id="sort-liste"
           aria-label="Sortierung"
-          className="h-11 min-h-11 w-full min-w-0 justify-between gap-2 bg-background text-left text-sm"
+          className="flex h-9 min-h-9 w-full min-w-0 max-w-full flex-nowrap items-center justify-between gap-1.5 overflow-hidden bg-background px-2.5 py-0 text-left text-xs shadow-sm [&_svg]:size-3.5"
         >
-          <Select.Value
-            placeholder="Sortieren"
-            className="line-clamp-1 min-w-0 text-left"
-          />
+          <span className="min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-left leading-tight">
+            <Select.Value placeholder="Sortieren" />
+          </span>
         </Select.Trigger>
         <Select.Content position="popper">
           <Select.Group>

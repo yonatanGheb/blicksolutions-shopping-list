@@ -1,6 +1,6 @@
 import { useCallback, useState, type ChangeEvent, type FormEvent } from "react";
 import { Plus } from "lucide-react";
-import { Button, Input, Label } from "@/components/retroui";
+import { Button, Input } from "@/components/retroui";
 
 export type AddItemFormProps = {
   disabled?: boolean;
@@ -48,13 +48,12 @@ export function AddItemForm({ disabled = false, onSubmit }: AddItemFormProps) {
       onSubmit={(e) => void handleSubmit(e)}
       className="flex flex-col gap-1.5 sm:gap-2"
     >
-      <Label htmlFor="item-name">Neuer Eintrag</Label>
       <div className="flex flex-row items-start gap-2">
         <div className="grid min-w-0 flex-1 gap-1.5">
           <Input
             id="item-name"
             className="bg-background text-base sm:text-sm"
-            placeholder="z. B. Milch, Brot…"
+            placeholder="Füge ein Produkt hinzu..."
             value={nameInput}
             onChange={handleNameChange}
             disabled={busy}
