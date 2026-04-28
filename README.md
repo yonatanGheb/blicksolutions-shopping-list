@@ -1,10 +1,10 @@
-# Einkaufslisten App
+# Shopping List App
 
-React (TypeScript) und Express (TypeScript) mit MongoDB (Mongoose): Einträge hinzufügen, als gekauft markieren, löschen.
+React (TypeScript) and Express (TypeScript) with MongoDB (Mongoose). You can add items, mark them as bought, and delete them. The repo is split into a `client` (Vite) and a `server` (Express) app.
 
 ## Setup
 
-**MongoDB** starten oder URI von Atlas bereithalten.
+**MongoDB** Run MongoDB locally or have a MongoDB Atlas URI ready.
 
 **Server**
 
@@ -13,14 +13,14 @@ cd server
 cp .env.example .env
 ```
 
-In `.env` mindestens `MONGODB_URI` setzen. Dann:
+Set at least `MONGODB_URI` in `.env`. Then:
 
 ```
 yarn install
 yarn dev
 ```
 
-(Standard: API auf Port 3000, CORS für `http://localhost:5173`.)
+By default the API uses port 3000 and allows CORS from `http://localhost:5173`.
 
 **Client**
 
@@ -29,15 +29,15 @@ cd client
 cp .env.example .env
 ```
 
-In `.env` `VITE_API_URL` auf die API setzen (z. B. `http://localhost:3000`). Dann:
+Set `VITE_API_URL` in `.env` to your API base URL, for example `http://localhost:3000`. Then:
 
 ```
 yarn install
 yarn dev
 ```
 
-**Produktion:** Server `yarn build` und `yarn start`, Client `yarn build` (Ausgabe in `client/dist`).
+**Production:** On the server run `yarn build` and `yarn start`. On the client run `yarn build`. Output is in `client/dist`.
 
 ## UI
 
-Als UI Basis dient **[RetroUI](https://retroui.dev)**. Die Komponenten liegen im Projekt unter `client/src/components/retroui`. RetroUI baut auf dem **shadcn/ui-Setup** (u. a. **Radix UI**-Primitives, **Tailwind CSS**); Einzelteile können z. B. über die shadcn CLI von der RetroUI Registry eingebunden werden. Es gibt kein separates `retroui`-npm Paket, der Code ist Teil dieses Repos.
+The UI is based on **[RetroUI](https://retroui.dev)**. Components are in `client/src/components/retroui`. RetroUI follows the **shadcn/ui** setup (**Radix UI** primitives, **Tailwind CSS**). More blocks can be added with the shadcn CLI from the RetroUI registry. There is no separate `retroui` npm package; the code lives in this repository.
